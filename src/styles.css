@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans SC", "WenQuanYi Zen Hei", "PingFang SC", "Source Han Sans SC", sans-serif;
+  --font-serif: "Noto Serif SC", "Songti SC", "Noto Serif CJK SC", "WenQuanYi Zen Hei", serif;
+  --color-paper: #f4efe4;
+  --color-paper-2: #e8e0d0;
+  --color-ink: #1c1712;
+  --color-muted: #6d6458;
+  --color-line: #d5ccbb;
+  --color-coast: #b7ad9c;
+  --color-sea: #c5dbd4;
+  --color-land: #e6dfd1;
+  --color-cinnabar: #9c3b2c;
+  --color-cinnabar-soft: #f6e4de;
+  --color-step-0: #f6e6c4;
+  --color-step-1: #e4c07a;
+  --color-step-2: #c47c3a;
+  --color-step-3: #8a4624;
+  --color-step-4: #3a2216;
+  --radius-card: 0.875rem;
+  --shadow-float: 0 12px 32px rgb(28 23 18 / 0.12);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.fill-step-0 { fill: var(--color-step-0); }
+.fill-step-1 { fill: var(--color-step-1); }
+.fill-step-2 { fill: var(--color-step-2); }
+.fill-step-3 { fill: var(--color-step-3); }
+.fill-step-4 { fill: var(--color-step-4); }
+.fill-nodata { fill: url(#land-hatch); }
+
+.land-path {
+  stroke: var(--color-coast);
+  stroke-width: 0.55;
+  vector-effect: non-scaling-stroke;
+  transition: fill 180ms ease;
+}
+
+.land-path[data-iso] {
+  cursor: pointer;
+}
+
+.land-path.is-hot {
+  stroke: var(--color-ink);
+  stroke-width: 1.35;
+}
+
+.land-path.is-selected,
+.land-stroke {
+  fill: none;
+  stroke: var(--color-cinnabar);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .land-path {
+    transition: none;
+  }
+}
